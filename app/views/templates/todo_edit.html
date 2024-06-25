@@ -1,0 +1,40 @@
+{{define "content"}} {{.Content}}
+
+<form
+  role="form"
+  action="/todos/update/{{.ID}}"
+  method="post"
+  onsubmit="return validateTodoUpsert();"
+>
+  <div class="lead">TodosUpdate</div>
+  <div class="form-group">
+    <textarea
+      class="form-control"
+      name="content"
+      id="content"
+      placeholder="Todoを更新"
+      rows="4"
+    >
+{{.Content}}</textarea
+    >
+    <br />
+    <span id="error-message" style="color: red; display: none"
+      >Todoを入力してください。</span
+    >
+    <br />
+    <a
+      href="/"
+      class="btn btn-lg btn-secondary pull-right"
+      style="margin-right: 10px"
+    >
+      キャンセル
+    </a>
+    <button class="btn btn-lg btn-primary pull-right" type="submit">
+      更新
+    </button>
+  </div>
+</form>
+
+<script src="/static/js/validate.js"></script>
+
+{{end}}
