@@ -3,7 +3,8 @@
 go mod init local.package/golang_todo
 
 go mod tidy
-
+README.md
+REAMDE.md
 ### DB 接続方法
 
 `sqlite3 wabapp.sql`実行
