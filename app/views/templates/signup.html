@@ -4,13 +4,13 @@
   <h2 class="form-signin-heading">
     <i class="fa fa-comments-o"> TodoApp </i>
   </h2>
-  <div class="lead">登録</div>
   <input
     id="name"
     type="text"
     name="name"
     class="form-control"
     placeholder="お名前"
+    value="{{ .Name }}"
     required
     autofocus
   />
@@ -19,6 +19,7 @@
     name="email"
     class="form-control"
     placeholder="Email"
+    value="{{ .Email }}"
     required
   />
   <input
@@ -28,6 +29,14 @@
     placeholder="パスワード"
     required
   />
+  {{ if .LoginFailed }}
+  <div id="error-messages" style="color: red; text-align: center">
+    {{ range .ErrorMessages }}
+    <div>{{ . }}</div>
+    {{ end }}
+  </div>
+  {{ end }}
+  <br />
   <button class="btn btn-lg btn-primary btn-block" type="submit">登録</button>
 </form>
 {{end}}

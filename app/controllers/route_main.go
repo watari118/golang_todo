@@ -28,16 +28,22 @@ func index(w http.ResponseWriter, r *http.Request) {
 		}
 		todos, _ := user.GetTodosByUser()
 		user.Todos = todos
-		generateHTML(w, user, "layout", "private_navbar", "index")
+		data := PageData{User: user}
+		generateHTML(w, data, "layout", "private_navbar", "index")
 	}
 }
 
 func todoNew(w http.ResponseWriter, r *http.Request) {
-	_, err := session(w, r)
+	sess, err := session(w, r)
 	if err != nil {
 		http.Redirect(w, r, "/login", 302)
 	} else {
-		generateHTML(w, nil, "layout", "private_navbar", "todo_new")
+		user, err := sess.GetUserBySession()
+		if err != nil {
+			log.Println(err)
+		}
+		data := PageData{User: user}
+		generateHTML(w, data, "layout", "private_navbar", "todo_new")
 	}
 }
 
@@ -73,7 +79,7 @@ func todoEdit(w http.ResponseWriter, r *http.Request, id int) {
 		if err != nil {
 			log.Println(err)
 		}
-		_, err := sess.GetUserBySession()
+		user, err := sess.GetUserBySession()
 		if err != nil {
 			log.Println(err)
 
@@ -83,7 +89,8 @@ func todoEdit(w http.ResponseWriter, r *http.Request, id int) {
 			log.Fatalln(err)
 		}
 		fmt.Println(t)
-		generateHTML(w, t, "layout", "private_navbar", "todo_edit")
+		data := PageData{User: user, Todo: t}
+		generateHTML(w, data, "layout", "private_navbar", "todo_edit")
 	}
 }
 

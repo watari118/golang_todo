@@ -1,8 +1,8 @@
-{{define "content"}} {{.Content}}
+{{define "content"}} {{.Todo.Content}}
 
 <form
   role="form"
-  action="/todos/update/{{.ID}}"
+  action="/todos/update/{{.Todo.ID}}"
   method="post"
   onsubmit="return validateTodoUpsert();"
 >
@@ -15,7 +15,7 @@
       placeholder="Todoを更新"
       rows="4"
     >
-{{.Content}}</textarea
+{{.Todo.Content}}</textarea
     >
     <br />
     <span id="error-message" style="color: red; display: none"

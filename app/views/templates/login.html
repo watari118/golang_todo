@@ -16,6 +16,8 @@
     id="email"
     class="form-control"
     placeholder="Email"
+    value="{{ .Email }}"
+    required
     autofocus
   />
   <input
@@ -24,8 +26,15 @@
     id="password"
     class="form-control"
     placeholder="パスワード"
+    required
   />
-  <div id="error-message" style="color: red; display: none"></div>
+  {{ if .LoginFailed }}
+  <div id="error-messages" style="color: red; text-align: center">
+    {{ range .ErrorMessages }}
+    <div>{{ . }}</div>
+    {{ end }}
+  </div>
+  {{ end }}
   <br />
   <button class="btn btn-lg btn-primary btn-block" type="submit">
     ログイン

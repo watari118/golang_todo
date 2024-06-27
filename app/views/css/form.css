@@ -39,3 +39,12 @@ body {
     border-top-right-radius: 0;
   }
   
+  .navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logout-link {
+    margin-left: auto;
+  }

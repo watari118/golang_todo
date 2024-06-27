@@ -1,6 +1,13 @@
 {{ define "navbar" }}
 <div class="container">
-  <a href="/logout" onclick="return confirmLogout();">logout</a>
+  <div class="navbar-content">
+    {{ if .User.Name }}
+    <span>ようこそ {{ .User.Name }}さん</span>
+    {{ end }}
+    <a href="/logout" onclick="return confirmLogout();" class="logout-link"
+      >logout</a
+    >
+  </div>
 </div>
 
 <script src="/static/js/validate.js"></script>
